@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,10 +9,13 @@ public class Enemy : MonoBehaviour
     public float enemySpeed = 2;
     private float enemyDirection = 1;
     public Animator anim;
-    private AudioSource source; 
+    private AudioSource source;
     public AudioClip deathSound;
     private BoxCollider2D boxCollider;
-    
+
+    public delegate void EnemyDestroyed();
+    public static event EnemyDestroyed OnEnemyDestroyed;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -25,22 +29,24 @@ public class Enemy : MonoBehaviour
     {
         rBody.velocity = new Vector2(enemyDirection * enemySpeed, rBody.velocity.y);
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.layer == 3 ||collision.gameObject.tag == "Goombas")
+        if (collision.gameObject.layer == 3 || collision.gameObject.tag == "Goombas")
         {
-         if(enemyDirection == 1)
-        {
-            enemyDirection = -1;
+            if (enemyDirection == 1)
+            {
+                enemyDirection = -1;
+            }
+            else if (enemyDirection == -1)
+            {
+                enemyDirection = 1;
+            }
         }
-        else if(enemyDirection == -1)
-        {
-            enemyDirection = 1;
-        }
-        }
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
             Destroy(collision.gameObject);
+            SceneManager.LoadScene("Game over");
         }
     }
 
@@ -51,5 +57,11 @@ public class Enemy : MonoBehaviour
         rBody.gravityScale = 0;
         enemyDirection = 0;
         Destroy(gameObject, 0.5f);
+
+        // Notificar al MenuManager que el enemigo ha sido destruido
+        if (OnEnemyDestroyed != null)
+        {
+            OnEnemyDestroyed();
+        }
     }
 }
