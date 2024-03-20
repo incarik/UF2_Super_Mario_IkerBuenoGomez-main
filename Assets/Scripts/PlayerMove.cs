@@ -16,6 +16,11 @@ public class PlayerMove : MonoBehaviour
     public Animator anim;
     AudioSource source;
     public AudioClip jumpSound;
+    public Transform bulletSpawn;
+    public GameObject bulletPrefab;
+    private bool canSoot = true;
+    public float timer;
+    public float rateOffFire = 1f;
 
     void Awake()
     {
@@ -52,21 +57,41 @@ public class PlayerMove : MonoBehaviour
             Debug.Log("yooooo");
         }*/
         
-        if(Input.GetButtonDown("Jump") && sensor.isGrounded == true)
+        Jump();
+        
+        Movement();
+
+        Shoot();
+    }
+
+    void FixedUpdate()
+    {
+         rBody.velocity = new Vector2(inputHorizontal * movementSpeed, rBody.velocity.y);
+        
+    }
+
+    void Jump()
+    {
+         if(Input.GetButtonDown("Jump") && sensor.isGrounded == true)
         {
                rBody.AddForce(new Vector2(0,1) * jumpForce, ForceMode2D.Impulse);   
                anim.SetBool("IsJumping", true);
                source.PlayOneShot(jumpSound);
         }
-        
-        if(inputHorizontal < 0)
+    }
+
+    void Movement()
+    {
+         if(inputHorizontal < 0)
         {
-            render.flipX = true;
+            //render.flipX = true;
+            transform.rotation = Quaternion.Euler(0, 180,0);
             anim.SetBool("IsRunning", true);
         }
         else if(inputHorizontal > 0)
         {
-            render.flipX = false;
+            //render.flipX = false;
+            transform.rotation = Quaternion.Euler(0, 0,0);
             anim.SetBool("IsRunning", true);
         }
         else 
@@ -75,10 +100,23 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void Shoot()
     {
-         rBody.velocity = new Vector2(inputHorizontal * movementSpeed, rBody.velocity.y);
-        
+        if(!canSoot)
+        {
+            timer += Time.deltaTime;
+            if(timer >= rateOffFire)
+            {
+                canSoot = true;
+                timer = 0;
+            }
+        }
+        if(Input.GetKeyDown(KeyCode.F) && canSoot)
+        {
+            Instantiate(bulletPrefab, bulletSpawn.position, bulletSpawn.rotation);
+
+            canSoot = false;
+        }
     }
 }
 
