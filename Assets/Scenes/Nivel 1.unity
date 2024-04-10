@@ -33309,7 +33309,7 @@ Transform:
   m_GameObject: {fileID: 1068922739}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.71, y: -0.08, z: 3.37454}
+  m_LocalPosition: {x: 1.2, y: -0.08, z: 3.37454}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -65210,6 +65210,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mario_0
       objectReference: {fileID: 0}
+    - target: {fileID: 1755800765621070058, guid: b2a84ceb0ec4f9b43aaec088d0748ae6, type: 3}
+      propertyPath: MinDistance
+      value: 1.0139084
+      objectReference: {fileID: 0}
     - target: {fileID: 6276898851934453456, guid: b2a84ceb0ec4f9b43aaec088d0748ae6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -104.5
@@ -65260,7 +65264,7 @@ PrefabInstance:
       objectReference: {fileID: 1068922740}
     - target: {fileID: 7177716901188581034, guid: b2a84ceb0ec4f9b43aaec088d0748ae6, type: 3}
       propertyPath: hitBoxRadius
-      value: 0.7
+      value: 1.06
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

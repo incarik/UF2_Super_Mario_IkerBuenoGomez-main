@@ -68,6 +68,7 @@ public class PlayerMove : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.J))
         {
             Attack();
+            anim.SetTrigger("IsAttacking");
         }
     }
 
@@ -127,7 +128,7 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    void Attack()
+    public void Attack()
     {
         Collider2D[] enemies = Physics2D.OverlapCircleAll(hitBox.position, hitBoxRadius);
     
@@ -143,9 +144,6 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
-
-
-
 
     void OnDrawGizmos()
     {
