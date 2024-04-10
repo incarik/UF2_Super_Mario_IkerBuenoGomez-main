@@ -20152,11 +20152,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &607135816 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7899885215184622806, guid: fba4dd1b72e34c6429de2bc98fabc243, type: 3}
-  m_PrefabInstance: {fileID: 8547456935357128994}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &609104693
 GameObject:
   m_ObjectHideFlags: 0
@@ -33289,6 +33284,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1068922739
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1068922740}
+  m_Layer: 0
+  m_Name: AttackHitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1068922740
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1068922739}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.71, y: -0.08, z: 3.37454}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 365460347}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1073719740
 GameObject:
   m_ObjectHideFlags: 0
@@ -40936,7 +40962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab:
   - {fileID: 1497546645}
-  - {fileID: 607135816}
+  - {fileID: 7899885215184622806, guid: fba4dd1b72e34c6429de2bc98fabc243, type: 3}
   spawnRate: 0.5
   timer: 0
   waitTime: 3
@@ -65224,9 +65250,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6827514582932986792, guid: b2a84ceb0ec4f9b43aaec088d0748ae6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7177716901188581034, guid: b2a84ceb0ec4f9b43aaec088d0748ae6, type: 3}
+      propertyPath: hitBox
+      value: 
+      objectReference: {fileID: 1068922740}
+    - target: {fileID: 7177716901188581034, guid: b2a84ceb0ec4f9b43aaec088d0748ae6, type: 3}
+      propertyPath: hitBoxRadius
+      value: 0.7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 6276898851934453456, guid: b2a84ceb0ec4f9b43aaec088d0748ae6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1068922740}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b2a84ceb0ec4f9b43aaec088d0748ae6, type: 3}
 --- !u!1001 &8547456935357128994

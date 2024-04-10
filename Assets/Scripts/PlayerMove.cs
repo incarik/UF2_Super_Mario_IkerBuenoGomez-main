@@ -21,6 +21,8 @@ public class PlayerMove : MonoBehaviour
     private bool canSoot = true;
     public float timer;
     public float rateOffFire = 1f;
+    public Transform hitBox;
+    public float hitBoxRadius = 2;
 
     void Awake()
     {
@@ -62,6 +64,11 @@ public class PlayerMove : MonoBehaviour
         Movement();
 
         Shoot();
+
+        if(Input.GetKeyDown(KeyCode.J))
+        {
+            Attack();
+        }
     }
 
     void FixedUpdate()
@@ -118,5 +125,31 @@ public class PlayerMove : MonoBehaviour
             canSoot = false;
         }
     }
-}
 
+
+    void Attack()
+    {
+        Collider2D[] enemies = Physics2D.OverlapCircleAll(hitBox.position, hitBoxRadius);
+    
+
+        foreach (Collider2D enemy in enemies)
+        {
+            if(enemy.gameObject.tag == "Goombas")
+            {
+                //Destroy(enemy.gameObject);
+                Enemy enemyScript = enemy.GetComponent<Enemy>();
+
+                enemyScript.GoombaDeath();
+            }
+        }
+    }
+
+
+
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(hitBox.position, hitBoxRadius);
+    }
+}
